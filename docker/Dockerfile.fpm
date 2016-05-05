@@ -1,0 +1,8 @@
+FROM php:7-fpm 
+
+RUN apt-get update && \
+    apt-get install -y libcurl4-openssl-dev 
+
+RUN docker-php-ext-install -j$(nproc) curl pdo_mysql
+
+COPY ./php-fpm/php.ini /usr/local/etc/php/
